@@ -34,4 +34,19 @@ def authenticate(client_id):
     return json["access_token"], valid_until
 
 
+def search_artist(token, artist):
+    endpoint = "https://api.spotify.com/v1/search"
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    parameters = {
+        "q": artist,
+        "type": "artist",
+        "limit": 50
+    }
+    r = requests.get(endpoint, params=parameters, headers=headers)
+    print(r)
+
+
+
 authenticate("643f62e46f4f46b9aeb17d4d63929497")
