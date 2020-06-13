@@ -45,8 +45,9 @@ def search_artist(token, artist):
         "limit": 50
     }
     r = requests.get(endpoint, params=parameters, headers=headers)
-    print(r)
+    print(r.json())
 
 
 
-authenticate("643f62e46f4f46b9aeb17d4d63929497")
+token, valid_until = authenticate("643f62e46f4f46b9aeb17d4d63929497")
+search_artist(token, "Can't Stop Won't Stop")
