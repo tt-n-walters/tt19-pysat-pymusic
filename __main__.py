@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 import os
 import base64
+import requests
+
 
 load_dotenv()
 
@@ -16,5 +18,15 @@ def authenticate(client_id):
     converted = base64.b64encode(encoded)
     decoded = converted.decode("utf-8")
 
-    print(decoded)
+    data = {
+        "grant_type": "client_credentials"
+    }
+    headers = {
+        "Authorization": "Basic " + decoded
+    }
+    r = requests.post(endpoint, data=data, headers=headers)
+    print(r)
 
+
+
+authenticate("643f62e46f4f46b9aeb17d4d63929497")
