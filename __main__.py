@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import base64
 import requests
+import time
 
 
 load_dotenv()
@@ -25,8 +26,12 @@ def authenticate(client_id):
         "Authorization": "Basic " + decoded
     }
     r = requests.post(endpoint, data=data, headers=headers)
-    print(r)
+    json = r.json()
 
+    current_time = time.time()
+    valid_until = current_time + json["expires_in"]
+
+    return json["access_token"], valid_until
 
 
 authenticate("643f62e46f4f46b9aeb17d4d63929497")
