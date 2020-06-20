@@ -99,4 +99,4 @@ for _ in range(5):
         break
 
 for result in get_recommendations(next(tokens), artists, tracks):
-    print(item["name"], item["artist_name"], item["link"])
+    print(result["name"], result["artist_name"], result["link"])
