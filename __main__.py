@@ -68,6 +68,32 @@ def get_recommendations(token, artists=[], tracks=[]):
 
 
     
-# search_track("Wish you were here")
+artists = []
+tracks = []
 
-print(get_recommendations(next(tokens), artists=["0k17h0D3J5VfsdmQ1iZtE9"]))
+for _ in range(5):
+    adding = input("Search for an artist or track?  ")
+
+    if adding == "artist":
+        name = input("Enter artist to search for: ")
+        results = search_artist(name)
+
+        for i, item in enumerate(results):
+            print(i, "::", item["name"], item["link"])
+        
+        choice = int(input("Which result?  "))
+        artists.append(results[choice]["id"])
+
+    elif adding == "track":
+        name = input("Enter track to search for: ")
+        results = search_track(name)
+
+        for i, item in enumerate(results):
+            print(i, "::", item["name"], item["artist_name"], item["link"])
+        
+        choice = int(input("Which result?  "))
+        tracks.append(results[choice]["id"])
+
+
+    else:
+        break
