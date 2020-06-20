@@ -45,33 +45,27 @@ def token_generator(client_id):
         yield token
 
 
+def searcher(token, search_type):
+    def search(query):
+        endpoint = "https://api.spotify.com/v1/search"
+        headers = {
+            "Authorization": "Bearer " + token
+        }
+        parameters = {
+            "q": query,
+            "type": search_type,
+            "limit": 50
+        }
+        r = requests.get(endpoint, params=parameters, headers=headers)
+        print(r.json())
+    return search
 
-def search_artist(token, artist):
-    endpoint = "https://api.spotify.com/v1/search"
-    headers = {
-        "Authorization": "Bearer " + token
-    }
-    parameters = {
-        "q": artist,
-        "type": "artist",
-        "limit": 50
-    }
-    r = requests.get(endpoint, params=parameters, headers=headers)
-    print(r.json())
+
+search_artist = searcher(token, "artist")
+search_track = searcher(token, "track")
+    
 
 
-def search_track(token, track):
-    endpoint = "https://api.spotify.com/v1/search"
-    headers = {
-        "Authorization": "Bearer " + token
-    }
-    parameters = {
-        "q": track,
-        "type": "track",
-        "limit": 50
-    }
-    r = requests.get(endpoint, params=parameters, headers=headers)
-    print(r.json())
 
 
 
