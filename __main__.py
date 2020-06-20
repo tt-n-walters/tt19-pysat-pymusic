@@ -1,14 +1,6 @@
-from dotenv import load_dotenv
-import os
-import base64
 import requests
-import time
 
 from authenticate import tokens
-
-load_dotenv()
-
-secret = os.getenv("secret")
 
 
 def searcher(tokens, search_type):
