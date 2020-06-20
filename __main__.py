@@ -61,5 +61,5 @@ def search_artist(token, artist):
 
 
 
-token, valid_until = authenticate("643f62e46f4f46b9aeb17d4d63929497")
-search_artist(token, "Can't Stop Won't Stop")
+tokens = token_generator("643f62e46f4f46b9aeb17d4d63929497")
+search_artist(next(tokens), "Pink Floyd")
