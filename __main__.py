@@ -19,11 +19,16 @@ def searcher(tokens, search_type):
         response = r.json()[search_type + "s"]["items"]
         data = []
         for result in response:
-            data.append({
+            item = {
                 "link": result["external_urls"]["spotify"],
                 "name": result["name"],
                 "id": result["id"]
-            })
+            }
+            if search_type == "track":
+                item["artist_name"] = result["artists"][0]["name"]
+
+            data.append(item)
+
         return data
 
 
