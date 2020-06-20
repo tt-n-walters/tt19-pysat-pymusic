@@ -45,11 +45,11 @@ def token_generator(client_id):
         yield token
 
 
-def searcher(token, search_type):
+def searcher(tokens, search_type):
     def search(query):
         endpoint = "https://api.spotify.com/v1/search"
         headers = {
-            "Authorization": "Bearer " + token
+            "Authorization": "Bearer " + next(tokens)
         }
         parameters = {
             "q": query,
@@ -61,13 +61,11 @@ def searcher(token, search_type):
     return search
 
 
-search_artist = searcher(token, "artist")
-search_track = searcher(token, "track")
+tokens = token_generator("643f62e46f4f46b9aeb17d4d63929497")
+
+search_artist = searcher(tokens, "artist")
+search_track = searcher(tokens, "track")
     
 
+search_artist("Queen")
 
-
-
-
-tokens = token_generator("643f62e46f4f46b9aeb17d4d63929497")
-search_artist(next(tokens), "Pink Floyd")
