@@ -47,7 +47,14 @@ def get_recommendations(token, artists=[], tracks=[]):
         parameters["seed_artists"] = artist_string
     if track_string:
         parameters["seed_tracks"] = track_string
-        
+    
+    endpoint = "https://api.spotify.com/v1/recommendations"
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    r = requests.get(endpoint, params=parameters, headers=headers)
+    
+
 
     
 search_track("Wish you were here")
