@@ -34,6 +34,18 @@ def authenticate(client_id):
     return json["access_token"], valid_until
 
 
+def token_generator(client_id):
+    token = None
+    valid_until = 0
+
+    while True:
+        # Check if expired
+        if time.time() > valid_until:
+            token, valid_until = authenticate(client_id)
+        yield token
+
+
+
 def search_artist(token, artist):
     endpoint = "https://api.spotify.com/v1/search"
     headers = {
