@@ -3,10 +3,7 @@ import time
 
 import requests
 
-from dotenv import load_dotenv
-import os
-load_dotenv()
-secret = os.getenv("secret")
+from config import client_id, secret
 
 
 def authenticate(client_id):
@@ -44,4 +41,4 @@ def token_generator(client_id):
         yield token
 
 
-tokens = token_generator("643f62e46f4f46b9aeb17d4d63929497")
+tokens = token_generator()

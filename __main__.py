@@ -23,6 +23,4 @@ def searcher(tokens, search_type):
 search_artist = searcher(tokens, "artist")
 search_track = searcher(tokens, "track")
     
-
 search_artist("Queen")
-
