@@ -31,12 +31,23 @@ def searcher(tokens, search_type):
 
         return data
 
-
     return search
-
 
 
 search_artist = searcher(tokens, "artist")
 search_track = searcher(tokens, "track")
+
+
+def get_recommendations(token, artists=[], tracks=[]):
+    artist_string = ",".join(artists)
+    track_string = ",".join(tracks)
+
+    parameters = {}
+    if artist_string:
+        parameters["seed_artists"] = artist_string
+    if track_string:
+        parameters["seed_tracks"] = track_string
+        
+
     
 search_track("Wish you were here")
