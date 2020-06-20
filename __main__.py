@@ -60,6 +60,20 @@ def search_artist(token, artist):
     print(r.json())
 
 
+def search_track(token, track):
+    endpoint = "https://api.spotify.com/v1/search"
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    parameters = {
+        "q": track,
+        "type": "track",
+        "limit": 50
+    }
+    r = requests.get(endpoint, params=parameters, headers=headers)
+    print(r.json())
+
+
 
 tokens = token_generator("643f62e46f4f46b9aeb17d4d63929497")
 search_artist(next(tokens), "Pink Floyd")
