@@ -54,17 +54,14 @@ def get_recommendations(token, artists=[], tracks=[]):
     }
     r = requests.get(endpoint, params=parameters, headers=headers)
 
-    response = r.json()[search_type + "s"]["items"]
+    response = r.json()["tracks"]
     data = []
     for result in response:
         item = {
             "link": result["external_urls"]["spotify"],
             "name": result["name"],
-            "id": result["id"]
+            "artist_name": result["artists"][0]["name"]
         }
-        if search_type == "track":
-            item["artist_name"] = result["artists"][0]["name"]
-
         data.append(item)
 
     return data
@@ -73,4 +70,4 @@ def get_recommendations(token, artists=[], tracks=[]):
     
 # search_track("Wish you were here")
 
-get_recommendations(next(tokens), artists=["0k17h0D3J5VfsdmQ1iZtE9"])
+print(get_recommendations(next(tokens), artists=["0k17h0D3J5VfsdmQ1iZtE9"]))
